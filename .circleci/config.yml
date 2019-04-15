@@ -42,3 +42,4 @@ jobs:
 
       - store_artifacts:
           path: ~/repo/target/circleci-test-0.0.1-SNAPSHOT.jar
+          destination: circleci-test.jar
