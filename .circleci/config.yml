@@ -4,10 +4,11 @@ orbs:
   aws-ecr: circleci/aws-ecr@0.0.4
 
 workflows:
+  version: 2
   build_push:
     jobs:
       - build
-      - testonly
+      - testonly:
           requires:
             - build
       - aws-ecr/build_and_push_image:
