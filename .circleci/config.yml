@@ -1,13 +1,19 @@
 version: 2.1
 
 orbs:
-  aws-ecr: circleci/aws-ecr@0.0.2
-  aws-ecs: circleci/aws-ecs@0.0.3
+  aws-ecr: circleci/aws-ecr@0.0.4
 
 workflows:
   build_test_deploy:
     jobs:
       - build
+      - aws-ecr/build_and_push_image:
+          region: ap-southeast-1
+          account-url: ${AWS_ECR_ACCOUNT_URL}
+          repo: ${CIRCLE_PROJECT_REPONAME}
+          tag: ${CIRCLE_BUILD_NUM}
+          requires:
+            - build_test
 
 jobs:
   build:
@@ -46,9 +52,10 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
+      - run: mvn clean package
       # build and push docker image to docker hub
 #       - run: mvn clean compile jib:build
-      - run: mvn clean compile jib:dockerBuild -Djib.to.image=748741166000.dkr.ecr.ap-southeast-1.amazonaws.com/docker-repo/circleci-test:$CIRCLE_BUILD_NUM
+#      - run: mvn clean compile jib:dockerBuild -Djib.to.image=748741166000.dkr.ecr.ap-southeast-1.amazonaws.com/docker-repo/circleci-test:$CIRCLE_BUILD_NUM
     #      - run: AWS_PROFILE=ecr-push-user docker push 748741166000.dkr.ecr.ap-southeast-1.amazonaws.com/docker-repo/circleci-test:$CIRCLE_BUILD_NUM
 
     #      - store_artifacts:
