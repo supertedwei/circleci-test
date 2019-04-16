@@ -3,6 +3,12 @@ orbs:
   aws-ecr: circleci/aws-ecr@0.0.2
   aws-ecs: circleci/aws-ecs@0.0.3
 workflows:
+  build:
+    jobs:
+      - testrun:
+        steps:
+          - run: ls -al
+
   build-and-deploy:
     jobs:
       - aws-ecr/build_and_push_image:
