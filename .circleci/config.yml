@@ -44,6 +44,7 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       - run: mkdir ~/.aws
+      - run : printf "[default]\nregion = ap-southeast-1\n" > ~/.aws/config
       - run: printf "[ecr-push-user]\naws_access_key_id = AKIA24VDTQOYNXFWDG4Y\naws_secret_access_key = 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\n" > ~/.aws/credentials
       - run: cat ~/.aws/credentials
 
