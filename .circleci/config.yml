@@ -46,11 +46,6 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
-      - run: push-image
-
-      # run tests!
-      # - run: mvn clean package
-
       # build and push docker image to docker hub
 #       - run: mvn clean compile jib:build
       - run: mvn clean compile jib:dockerBuild -Djib.to.image=748741166000.dkr.ecr.ap-southeast-1.amazonaws.com/docker-repo/circleci-test:$CIRCLE_BUILD_NUM
