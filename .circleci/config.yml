@@ -61,7 +61,7 @@ jobs:
       - run: ls -al
 
       - persist_to_workspace:
-          root: ~
+          root: ~/
           paths:
             - workspace
       # build and push docker image to docker hub
