@@ -11,8 +11,8 @@ workflows:
   build-test-deploy:
     jobs:
       - build:
-        docker:
-          # specify the version you desire here
-          - image: circleci/openjdk:8-jdk
+#        docker:
+#          # specify the version you desire here
+#          - image: circleci/openjdk:8-jdk
         steps:
           - checkout
