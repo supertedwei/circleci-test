@@ -58,6 +58,10 @@
 					<from>
 						<image>openjdk:8u201-jre-alpine3.9</image>
 					</from>
+					<to>
+						<image>748741166000.dkr.ecr.ap-southeast-1.amazonaws.com/docker-repo/circleci-test:2</image>
+						<credHelper>ecr-login</credHelper>
+					</to>
 					<container>
 						<ports>
 							<port>8080</port>
