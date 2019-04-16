@@ -13,7 +13,7 @@ workflows:
           repo: ${CIRCLE_PROJECT_REPONAME}
           tag: ${CIRCLE_BUILD_NUM}
           requires:
-            - build_test
+            - build
 
 jobs:
   build:
