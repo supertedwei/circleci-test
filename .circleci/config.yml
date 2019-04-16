@@ -7,6 +7,9 @@ workflows:
   build_push:
     jobs:
       - build
+      - testonly
+      - requires:
+          - build
       - aws-ecr/build_and_push_image:
           region: ap-southeast-1
           account-url: ${AWS_ECR_ACCOUNT_URL}
@@ -14,6 +17,7 @@ workflows:
           tag: ${CIRCLE_BUILD_NUM}
           requires:
             - build
+            - testonly
 
 jobs:
   build:
@@ -53,6 +57,7 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       - run: mvn clean package
+      - run: ls -al
       # build and push docker image to docker hub
 #       - run: mvn clean compile jib:build
 #      - run: mvn clean compile jib:dockerBuild -Djib.to.image=748741166000.dkr.ecr.ap-southeast-1.amazonaws.com/docker-repo/circleci-test:$CIRCLE_BUILD_NUM
@@ -61,3 +66,15 @@ jobs:
     #      - store_artifacts:
     #          path: ~/repo/target/circleci-test-0.0.1-SNAPSHOT.jar
     #          destination: circleci-test.jar
+
+  testonly:
+    docker:
+      # specify the version you desire here
+      - image: circleci/openjdk:8-jdk
+
+    environment:
+      # Customize the JVM maximum heap limit
+      MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - run: ls -al
