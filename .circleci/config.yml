@@ -8,11 +8,6 @@ orbs:
   aws-ecr: circleci/aws-ecr@4.0.0
 
 workflows:
-  build-test-deploy:
+  build_and_push_image:
     jobs:
-      - build:
-#        docker:
-#          # specify the version you desire here
-#          - image: circleci/openjdk:8-jdk
-        steps:
-          - checkout
+      - aws-ecr/build_and_push_image:
