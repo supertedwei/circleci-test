@@ -50,6 +50,7 @@ jobs:
       # - run: mvn clean compile jib:build
       - run: mvn clean compile jib:buildTar
       - run: docker load --input target/jib-image.tar
+      - run: docker images | grep circle
 
       - store_artifacts:
           path: ~/repo/target/circleci-test-0.0.1-SNAPSHOT.jar
