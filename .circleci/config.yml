@@ -61,7 +61,9 @@ jobs:
       - run: ls -al
 
       - persist_to_workspace:
-          root: ~/workspace
+          root: ~
+          paths:
+            - workspace
       # build and push docker image to docker hub
 #       - run: mvn clean compile jib:build
 #      - run: mvn clean compile jib:dockerBuild -Djib.to.image=748741166000.dkr.ecr.ap-southeast-1.amazonaws.com/docker-repo/circleci-test:$CIRCLE_BUILD_NUM
