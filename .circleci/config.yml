@@ -43,6 +43,9 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
+      - run: mkdir ~/.aws
+      - run: echo "[ecr-push-user]" > ~/.aws/credentials
+
       # run tests!
       # - run: mvn clean package
 
