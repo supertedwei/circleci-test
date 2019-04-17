@@ -24,7 +24,6 @@ jobs:
         environment:
           MYSQL_DATABASE: flickball
           MYSQL_HOST: 127.0.0.1
-          MYSQL_ROOT_HOST: %
           MYSQL_USER: flickball
           MYSQL_PASSWORD: flickball
 
