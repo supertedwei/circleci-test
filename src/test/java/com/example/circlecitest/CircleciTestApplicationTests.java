@@ -11,6 +11,7 @@ public class CircleciTestApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		System.out.println("================= from Ted");
 	}
 
 }
