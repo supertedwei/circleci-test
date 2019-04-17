@@ -8,9 +8,6 @@ workflows:
   build_push:
     jobs:
       - build
-      - testonly:
-          requires:
-            - build
       - aws-ecr/build_and_push_image:
           repo: ${CIRCLE_PROJECT_REPONAME}
           tag: ${CIRCLE_BUILD_NUM}
