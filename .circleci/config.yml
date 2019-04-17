@@ -20,6 +20,10 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
+      - image: circleci/mysql:5.6.40
+        environment:
+          MYSQL_DATABASE: flickball
+          MYSQL_HOST: 127.0.0.1
 
     working_directory: ~/workspace
 
